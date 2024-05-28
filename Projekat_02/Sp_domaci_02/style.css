@@ -1,0 +1,36 @@
+﻿body {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#textInput {
+    margin-right: 10px;
+}
+
+.divKlasa {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /*width: 350px;*/
+    flex-wrap: wrap;
+    padding: 30px;
+
+    border: 1px solid black;
+    padding-bottom: 50px;
+}
+
+
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+}
+
+
+
