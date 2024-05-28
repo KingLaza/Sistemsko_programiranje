@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\elfak\\3 godina sem 6\\Sistemsko programiranje\\Sp_domaci_01\\Sp_domaci_01\\Sp_domaci_01.csproj",
+      "projectUniqueName": "D:\\elfak\\3 godina sem 6\\Sistemsko programiranje\\Sistemsko_programiranje\\Projekat_01\\Sp_domaci_01\\Sp_domaci_01.csproj",
       "projectName": "Sp_domaci_01",
-      "projectPath": "D:\\elfak\\3 godina sem 6\\Sistemsko programiranje\\Sp_domaci_01\\Sp_domaci_01\\Sp_domaci_01.csproj",
+      "projectPath": "D:\\elfak\\3 godina sem 6\\Sistemsko programiranje\\Sistemsko_programiranje\\Projekat_01\\Sp_domaci_01\\Sp_domaci_01.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "D:\\elfak\\3 godina sem 6\\Sistemsko programiranje\\Sp_domaci_01\\Sp_domaci_01\\obj\\",
+      "outputPath": "D:\\elfak\\3 godina sem 6\\Sistemsko programiranje\\Sistemsko_programiranje\\Projekat_01\\Sp_domaci_01\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",

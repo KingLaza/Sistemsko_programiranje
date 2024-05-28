@@ -32,7 +32,7 @@ namespace WordCountWebServer
             HttpListenerRequest request = context.Request;
             HttpListenerResponse response = context.Response;
 
-            string filename = request.Url.Segments[1]; // Extract filename from URL
+            string filename = request.Url.Segments[1];
             string responseBody;
             responseBody = Cache.ReadFromCache(filename);
             if (responseBody == "")
@@ -70,17 +70,17 @@ namespace WordCountWebServer
             response.Close();
         }
 
-        static string FindFile(string directory, string filename)
+        static string FindFile(string directory, string filename)       //ovo nzm da li je potrebno da rade vise niti...
         {
             string[] files = Directory.GetFiles(directory, filename, SearchOption.AllDirectories);
             if (files.Length > 0)
             {
-                return files[0]; // Return the first matching file
+                return files[0];
             }
             return null;
         }
 
-        static int CountWordsStartingWithCapital(string text)
+        static int CountWordsStartingWithCapital(string text)           //ovo bi mozda moglo da se optimizuje da ga rade vise niti
         {
             int count = 0;
             string[] words = text.Split(new char[] { ' ', '\n', '\r', '\t' }, StringSplitOptions.RemoveEmptyEntries);
