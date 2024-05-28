@@ -32,7 +32,22 @@ namespace WordCountWebServer
             HttpListenerRequest request = context.Request;
             HttpListenerResponse response = context.Response;
 
-            string filename = request.Url.Segments[1];
+            string filename = "NOTHING";
+
+            if (request.Url.Segments.Length <= 1)               //just tinker this a bit, maybe there are other annomalies
+            {
+                response.StatusCode = (int)HttpStatusCode.BadRequest;
+                string responseString = "Filename is missing in the URL.";
+                byte[] buffer2 = System.Text.Encoding.UTF8.GetBytes(responseString);
+                response.ContentLength64 = buffer2.Length;
+                response.OutputStream.Write(buffer2, 0, buffer2.Length);
+                response.OutputStream.Close();
+                return;
+            }
+                
+
+            if (request.Url.Segments.Length > 1)
+                filename = request.Url.Segments[1];
             string responseBody;
             responseBody = Cache.ReadFromCache(filename);
             if (responseBody == "")
