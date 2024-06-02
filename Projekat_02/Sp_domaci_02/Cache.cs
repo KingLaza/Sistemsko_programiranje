@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -71,6 +72,25 @@ namespace Projekat_02
                 cacheLock.ExitWriteLock();
             }
         }
+
+        public static void ClearCache(){
+            cacheLock.EnterWriteLock();
+            try
+            {
+                //sta ako kljuc ne postoji?
+                cache.Clear();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                throw;
+            }
+            finally
+            {
+                cacheLock.ExitWriteLock();
+            }
+        }
+
 
     }
 }

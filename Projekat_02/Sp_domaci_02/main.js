@@ -13,14 +13,14 @@ document.addEventListener("DOMContentLoaded", function() {
     changeButton.addEventListener("click", async () => {
         const inputValue = textInput.value;
         //outputLabel.textContent = inputValue;
-        const res = await fetch(`http://localhost:5050/${inputValue}.txt`).then(
+        const res = await fetch(`http://localhost:5050/${inputValue}`).then(
             res => res.text()
         ).then(
             text => {
                 let label_text = text.split('/');
                 
                 outputLabel1.innerHTML = label_text[0];
-                outputLabel2.innerHTML = label_text[1];
+                label_text[1] != undefined ? outputLabel2.innerHTML = label_text[1]: outputLabel2.innerHTML = "no point in using timer for this";
             }
         );
 
