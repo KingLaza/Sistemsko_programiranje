@@ -13,9 +13,6 @@ namespace Projekat_02
     //fatMan - 100 000 words
     class Program
     {
-        public static readonly int clearCacheCount = 5;     //ako imas vremena ulespaj, novi fajl mozda
-
-
         public static async Task Main(string[] args)
         {
             string prefix = "http://localhost:5050/";
@@ -32,18 +29,16 @@ namespace Projekat_02
             
             Console.WriteLine("Listening for requests on " + prefix);
 
-            
-            var cleanupThread = new Thread(ClearEventually);
-            cleanupThread.IsBackground = true;
-            cleanupThread.Start();
-
             async void ClearEventually(){
                 while(true){
-                    await Task.Delay(TimeSpan.FromMinutes(2));
+                    await Task.Delay(TimeSpan.FromMinutes(1));
                     Cache.ClearCache();
                 }
             }
             
+            var cacheClearThread = new Thread(ClearEventually);
+            cacheClearThread.IsBackground = true;
+            cacheClearThread.Start();
 
             while (true)
             {

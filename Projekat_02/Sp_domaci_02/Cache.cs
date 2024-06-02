@@ -9,6 +9,7 @@ namespace Projekat_02
 {
     public static class Cache
     {
+        private static readonly int cacheMaxNumber = 100;
         private static readonly ReaderWriterLockSlim cacheLock = new ReaderWriterLockSlim();
         private static readonly Dictionary<string, string> cache = new Dictionary<string, string>();
 
@@ -41,6 +42,9 @@ namespace Projekat_02
             cacheLock.EnterWriteLock();
             try
             {
+                if (cache.Count > cacheMaxNumber){
+                    cache.Clear();
+                }
                 cache[key] = value;
             }
             catch (Exception e)
@@ -58,7 +62,6 @@ namespace Projekat_02
             cacheLock.EnterWriteLock();
             try
             {
-                //sta ako kljuc ne postoji?
                 if (cache.ContainsKey(key))
                     cache.Remove(key);
             }
@@ -77,7 +80,6 @@ namespace Projekat_02
             cacheLock.EnterWriteLock();
             try
             {
-                //sta ako kljuc ne postoji?
                 cache.Clear();
             }
             catch (Exception e)
