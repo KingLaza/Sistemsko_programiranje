@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Information</title>
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            background-color: cornflowerblue;
+            background-position: center top;
+            background-image: url(https://wallpapercave.com/wp/7rhrsIf.jpg);
+            background-repeat: no-repeat;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .input-container {
+            margin-bottom: 15px;
+            width: 100%;
+            text-align: center;
+        }
+
+        label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        input[type="text"] {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 200px;
+            font-size: 16px;
+        }
+
+        button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+            button[type="submit"]:hover {
+                background-color: #45a049;
+            }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .error-details {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #ffebee;
+            border: 1px solid #ffcdd2;
+            border-radius: 4px;
+        }
+
+        .weather-info {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: fit-content;
+            margin: auto;
+        }
+
+            .weather-info h2 {
+                text-align: center;
+                color: #333;
+                margin-bottom: 10px;
+            }
+
+            .weather-info p {
+                margin-bottom: 5px;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Weather Information</h1>
+        <form method="POST" action="/">
+            <div class="input-container">
+                <label for="latitude">Latitude:</label>
+                <input type="text" id="latitude" name="latitude">      <!--required-->
+            </div>
+            <div class="input-container">
+                <label for="longitude">Longitude:</label>
+                <input type="text" id="longitude" name="longitude">        <!--required-->
+            </div>
+            <button type="submit">Get Weather</button>
+        </form>
+        <div id="error-message" class="error"></div>
+        <div id="weather-info" class="weather-info"></div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const errorMessage = "{{errorMessage}}";
+            const errorDetails = {{errorDetails}};
+            const weatherInfo = {{weatherInfo}};
+
+            if (errorMessage) {
+                document.getElementById('error-message').textContent = errorMessage;
+                if (errorDetails && errorDetails.length) {
+                    const detailsDiv = document.createElement('div');
+                    detailsDiv.classList.add('error-details');
+                    errorDetails.forEach(detail => {
+                        const p = document.createElement('p');
+                        p.textContent = detail;
+                        detailsDiv.appendChild(p);
+                    });
+                    document.getElementById('error-message').appendChild(detailsDiv);
+                }
+            }
+
+            if (weatherInfo && weatherInfo.Location) {
+                const infoDiv = document.getElementById('weather-info');
+                const container = document.createElement('div');
+                container.innerHTML = `
+                    <h2>${weatherInfo.Location}</h2>
+                    <p>Average Humidity: ${weatherInfo.AverageHumidity ?? 'N/A'}%</p>
+                    <p>Min Humidity: ${weatherInfo.MinHumidity ?? 'N/A'}%</p>
+                    <p>Max Humidity: ${weatherInfo.MaxHumidity ?? 'N/A'}%</p>
+                    <p>Average Visibility: ${weatherInfo.AverageVisibility ?? 'N/A'} km</p>
+                    <p>Min Visibility: ${weatherInfo.MinVisibility ?? 'N/A'} km</p>
+                    <p>Max Visibility: ${weatherInfo.MaxVisibility ?? 'N/A'} km</p>
+                    <p>Average UV Index: ${weatherInfo.AverageUVIndex ?? 'N/A'}</p>
+                `;
+                infoDiv.appendChild(container);
+            }
+        });
+    </script>
+</body>
+</html>
